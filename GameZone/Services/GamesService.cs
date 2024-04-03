@@ -1,5 +1,7 @@
-﻿using GameZone.Data;
+﻿
+using GameZone.Data;
 using GameZone.Models;
+using GameZone.Settings;
 using GameZone.ViewModels;
 
 namespace GameZone.Services
@@ -16,7 +18,7 @@ namespace GameZone.Services
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-            _imagesPath = $"{_webHostEnvironment.WebRootPath}/assets/images/games";
+            _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
         }
 
        

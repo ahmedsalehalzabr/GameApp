@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using GameZone.Attributes;
+using GameZone.Settings;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace GameZone.ViewModels
@@ -18,6 +20,8 @@ namespace GameZone.ViewModels
         [Display(Name = "Supported Devices")]
         public List<int> SelectedDevices { get; set; } = new List<int>();
 
+        [AllowedExtensions(FileSettings.AllowedExtensions),
+            MaxFileSize(FileSettings.MaxeFileSizeInBytes)]
         public IFormFile Cover { get; set; } = default!;
 
         [MaxLength(250)]

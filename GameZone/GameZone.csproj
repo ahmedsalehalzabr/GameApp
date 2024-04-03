@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Settings\" />
     <Folder Include="wwwroot\assets\images\games\" />
   </ItemGroup>
 

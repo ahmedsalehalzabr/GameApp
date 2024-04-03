@@ -38,7 +38,7 @@ namespace GameZone.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Create(CreateGameFormVM model)
         {
             if (!ModelState.IsValid)
