@@ -8,7 +8,8 @@ namespace GameZone.Services
         IEnumerable<Game> GetAll();
         Game? GetById(int id);
         Task Create(CreateGameFormVM model);
-        //Task<Game?> Update(EditGameFormVM model);
+
+        Task<Game?> Update(EditGameFormVM model);
        
     }
 }

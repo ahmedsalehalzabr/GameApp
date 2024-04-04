@@ -1,14 +1,17 @@
 ﻿using GameZone.Attributes;
 using GameZone.Settings;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
 
 namespace GameZone.ViewModels
 {
-    public class CreateGameFormVM : GameFormVM
+    public class EditGameFormVM : GameFormVM
     {
+        public int Id { get; set; }
+
+        public string? CurrentCover { get; set; }
+
         [AllowedExtensions(FileSettings.AllowedExtensions),
             MaxFileSize(FileSettings.MaxeFileSizeInBytes)]
-        public IFormFile Cover { get; set; } = default!;
+        public IFormFile? Cover { get; set; } = default!;
+
     }
 }

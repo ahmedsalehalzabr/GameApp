@@ -61,5 +61,46 @@ namespace GameZone.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var game = _gamesService.GetById(id);
+
+            if (game is null)
+                return NotFound();
+            EditGameFormVM viewModel = new()
+            {
+                Id = id,
+                Name = game.Name,
+                Description = game.Description,
+                CategoryId = game.CategoryId,
+                SelectedDevices = game.Devices.Select(d => d.DeviceId).ToList(),
+                Categories = _categoriesService.GetSelectList(),
+                Devices = _devicesService.GetSelectList(),
+                CurrentCover = game.Cover
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditGameFormVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Categories = _categoriesService.GetSelectList();
+                model.Devices = _devicesService.GetSelectList();
+                return View(model);
+            }
+
+            var game = await _gamesService.Update(model);
+
+            if (game is null)
+                return BadRequest();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
