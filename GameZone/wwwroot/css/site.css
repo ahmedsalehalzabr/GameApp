@@ -86,7 +86,7 @@ body {
 }
 
 div:where(.swal2-container) div:where(.swal2-popup) {
-    background: #00ff21;
+    background: #ff6a00;
 }
 /* End Override SweetAlert2 */
 

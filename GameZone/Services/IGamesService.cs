@@ -10,6 +10,8 @@ namespace GameZone.Services
         Task Create(CreateGameFormVM model);
 
         Task<Game?> Update(EditGameFormVM model);
+
+        bool Delete(int id);
        
     }
 }

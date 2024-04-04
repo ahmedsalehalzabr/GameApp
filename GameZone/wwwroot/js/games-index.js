@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     $('.js-delete').on('click', function () {
         var btn = $(this);
 
