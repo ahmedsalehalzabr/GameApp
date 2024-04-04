@@ -3,6 +3,7 @@ using GameZone.Data;
 using GameZone.Models;
 using GameZone.Settings;
 using GameZone.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameZone.Services
 {
@@ -21,7 +22,25 @@ namespace GameZone.Services
             _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
         }
 
-       
+        public IEnumerable<Game> GetAll()
+        {
+            return _context.Games
+                .Include(g => g.Category)
+                .Include(g => g.Devices)
+                .ThenInclude(a => a.Device)
+                .AsNoTracking()
+                .ToList();
+        }
+
+        public Game? GetById(int id)
+        {
+            return _context.Games
+               .Include(g => g.Category)
+               .Include(g => g.Devices)
+               .ThenInclude(a => a.Device)
+               .AsNoTracking()
+               .SingleOrDefault(g => g.Id == id);
+        }
         public async Task Create(CreateGameFormVM model)
         {
             var coverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
@@ -44,8 +63,6 @@ namespace GameZone.Services
             _context.SaveChanges();
         }
 
-       
-
-    
+     
     }
 }
